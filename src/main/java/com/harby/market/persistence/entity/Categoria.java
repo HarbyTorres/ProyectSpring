@@ -1,11 +1,15 @@
 package com.harby.market.persistence.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "categorias")
@@ -19,6 +23,11 @@ public class Categoria {
     private String descripcion;
 
     private Boolean estado;
+
+    //relationship mapping
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     //getters and setters
 

@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "productos")
@@ -31,6 +34,12 @@ public class Producto {
     private Integer cantidadStock;
 
     private Boolean estado;
+
+    //Relationship mapping
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", updatable = false, insertable = false)
+    private Categoria categoria;
 
     //getters and setters
 
