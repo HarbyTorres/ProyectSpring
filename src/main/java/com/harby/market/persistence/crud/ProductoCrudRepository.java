@@ -20,6 +20,4 @@ public interface ProductoCrudRepository extends CrudRepository<Producto, Integer
 
     List<Producto> findByEstado(boolean estado);
 
-    List<Producto> findByPrecioVentaBetween (int min, int max);
-
 }

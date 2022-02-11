@@ -33,10 +33,6 @@ public class ProductoRepository {
         return productoCrudRepository.findByEstado(estado);
     }
 
-    public List<Producto> getByBetweenPrecioVenta (int min, int max){
-        return productoCrudRepository.findByPrecioVentaBetween(min, max);
-    }
-
     public Optional<Producto> getProducto (int idProducto){
         return productoCrudRepository.findById(idProducto);
     }
