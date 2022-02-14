@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductoRepository implements ProductRepository {
 
-    //@Autowired Inyeccion de dependencias controlado por spring
+    //@Autowired Dependency injection controlled by spring
     @Autowired
     private ProductoCrudRepository productoCrudRepository;
 

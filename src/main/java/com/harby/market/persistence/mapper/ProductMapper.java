@@ -10,10 +10,10 @@ import java.util.List;
 import com.harby.market.domain.Product;
 import com.harby.market.persistence.entity.Producto;
 
-//componentModel = especifica que es un componente de spring para que este tenga control sobre su instanciamiento
+//componentModel = specifies that it is a spring component so that it has control over its instantiation
 @Mapper(componentModel = "spring", uses = {CategoryMapper.class})
 public interface ProductMapper {
-    
+
     @Mappings({
         @Mapping(source = "idProducto", target = "productId"),
         @Mapping(source = "nombre", target = "name"),
