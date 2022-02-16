@@ -2,6 +2,10 @@ package com.harby.market.web.controller;
 
 import com.harby.market.domain.Product;
 import com.harby.market.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,23 +23,54 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
+    @ApiOperation("Get all supermarket products")
+    @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<Product>> getAll(){
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("category/{categoryId}")
-    public ResponseEntity<List<Product>> getByCategory(@PathVariable("categoryId") int categoryId){
+    @ApiOperation("Get product by category id")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Products not found")
+    })
+    public ResponseEntity<List<Product>> getByCategory(@ApiParam(
+            name = "The id of category",
+            required = true,
+            example = "1",
+            type = "Integer"
+    ) @PathVariable("categoryId") int categoryId){
         return productService.getByCategory(categoryId).map(products -> new ResponseEntity<>(products, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") int productId){
+    @ApiOperation("Get product by id")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity<Product> getProduct(@ApiParam(
+            name = "Id of the product",
+            required = true,
+            example = "20"
+    )@PathVariable("id") int productId){
         return ResponseEntity.of(productService.getProduct(productId));
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<List<Product>> getByName (@PathVariable("name") String name){
+    @ApiOperation("Search products by name")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Products not found")
+    })
+    public ResponseEntity<List<Product>> getByName (@ApiParam(
+            name = "Name of the product",
+            required = true,
+            example = "Pera",
+            type = "String"
+    )@PathVariable("name") String name){
         return ResponseEntity.of(productService.getByName(name));
     }
 

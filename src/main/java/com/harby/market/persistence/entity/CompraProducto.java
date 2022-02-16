@@ -2,15 +2,11 @@ package com.harby.market.persistence.entity;
 
 import java.math.BigDecimal;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "compras_productos")
-public class CompraProducto {
+public class    CompraProducto {
 
     @EmbeddedId
     private CompraProductoPK id;
@@ -23,6 +19,7 @@ public class CompraProducto {
     //Relationship mapping
 
     @ManyToOne
+    @MapsId("idCompra")
     @JoinColumn(name = "id_compra", insertable = false, updatable = false)
     private Compra compra;
 
@@ -31,8 +28,9 @@ public class CompraProducto {
     private Producto producto;
 
     //getters and Setters
+
     public CompraProductoPK getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(CompraProductoPK id) {
@@ -40,7 +38,7 @@ public class CompraProducto {
     }
 
     public Integer getCantidad() {
-        return this.cantidad;
+        return cantidad;
     }
 
     public void setCantidad(Integer cantidad) {
@@ -48,7 +46,7 @@ public class CompraProducto {
     }
 
     public BigDecimal getTotal() {
-        return this.total;
+        return total;
     }
 
     public void setTotal(BigDecimal total) {
@@ -56,15 +54,26 @@ public class CompraProducto {
     }
 
     public boolean isEstado() {
-        return this.estado;
-    }
-
-    public boolean getEstado() {
-        return this.estado;
+        return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }

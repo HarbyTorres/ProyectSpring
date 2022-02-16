@@ -19,7 +19,7 @@ public class Cliente {
 
     private String apellidos;
     
-    private Integer celular;
+    private Long celular;
     
     private String direccion;
 
@@ -57,11 +57,11 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public Integer getCelular() {
+    public Long getCelular() {
         return this.celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 
